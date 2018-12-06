@@ -14,6 +14,33 @@ struct Output {
   virtual void get(IN n) = 0;
 };
 
+//there will be a symmetric joiner pattern, but not much code reusability there
+template <typename T>
+struct Splitter: public Output<T> {
+  vector<Output<T>*> outputs;
+
+  void get(T t){
+    int i;
+    for(i=0; i<outputs.size(); i++){
+      *(outputs[i])->get(t);
+    }
+  }
+};
+
+template <typename T>
+struct Heart {
+
+  Input<T> *in;
+  Output<T> *out;
+
+  Heart(Input<T> *i, Output<T> *o): in(i), out(o)
+  {}
+
+  void beat(){
+    out->get(in->give());
+  }
+};
+
 struct PlumbingError {
   string msg; 
   PlumbingError(string gms){
@@ -47,7 +74,6 @@ struct Pipe: public Input<OUT>, public Output<IN> {
   }
 };
 
-//not a pipe itself, just an output
 template <typename T>
 struct Catch: Output<T> {
 
