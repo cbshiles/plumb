@@ -1,1 +1,2 @@
-c++ src/test.cpp -o bin/go
+cmplr=g++
+$cmplr src/test.cpp -o bin/go

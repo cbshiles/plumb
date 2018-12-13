@@ -1,5 +1,32 @@
 #include <fstream>
 
+string readF(string fname){
+  ifstream rf;
+  rf.open(fname.c_str());
+
+  if (! rf.is_open())
+    throw runtime_error("Could not open read file.");
+
+  string line, tot="";
+  while(! (getline(rf, line)).eof()){
+    tot += line+'\n';
+  } tot += line+'\n';
+  rf.close();
+  return tot;
+}
+
+void writeF(string fname, string data){
+  ofstream wf;
+  wf.open(fname.c_str());
+  if (! wf.is_open())
+    throw runtime_error("Could not open write file.");
+
+  wf.write(data.c_str(), data.length());
+  
+  wf.close();
+  return;
+}
+
 //struct to read file char by char
 struct CharReader {
   ifstream stream;

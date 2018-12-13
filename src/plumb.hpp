@@ -1,5 +1,7 @@
 using namespace std;
 
+#include <vector>
+
 //this is meant to be a simple lib making use of a particular design pattern
 //the goal is not to investigate c++'s eccentricities more than nescesary
 
@@ -43,9 +45,7 @@ struct Heart {
 
 struct PlumbingError {
   string msg; 
-  PlumbingError(string gms){
-    msg = gms;
-  }
+  PlumbingError(string gsm): msg(gsm){}
 };
 
 template <typename IN, typename OUT>
@@ -84,6 +84,7 @@ struct Catch: Output<T> {
 };
 
 //used for side effects
+//static pipes do not modify what they are passsing through
 template <typename T>
 struct StaticPipe: public Pipe<T, T> {
 

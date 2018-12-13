@@ -1,4 +1,4 @@
-"double quote area" '
+"double quote \"area\"" '
 single
 quote area' `back "quotes" area`
 no quotes area

@@ -56,9 +56,9 @@ int main()
   attachPipes(&oot, &aaa);
   u.check(aaa.give() == "AAAAAAA", "AAAAAAA");
   u.check(aaa.give() != "AAAAAAAb", "! AAAAAAAb");
-
   u.summary();
 
-  doit("test/uno.carl");
+  doit2();
+
   return 0;
 }
